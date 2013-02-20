@@ -17,6 +17,9 @@ class JSON_API_Response {
     
     // Compatibility with Disqus plugin
     remove_action('loop_end', 'dsq_loop_end');
+    remove_filter('the_content', 'disp_social', 1);
+    remove_filter('the_excerpt', 'disp_social');
+    remove_filter('comment_text', 'youtube_link', 1);
   }
   
   function get_json($data, $status = 'ok') {
