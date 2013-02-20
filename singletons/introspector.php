@@ -14,6 +14,24 @@ class JSON_API_Introspector {
         $output[] = new JSON_API_Post($post);
       }
     }
+
+    $total = count($output);
+    
+    if ($total)
+    {
+       $previous = get_adjacent_post(false, '', true);
+       $next = get_adjacent_post(false, '', false);
+       
+       if ($previous) {
+               $output[$total - 1]->previous_title = $previous->post_title;
+               $output[$total - 1]->previous_url = get_permalink($previous->ID);
+       }
+       if ($next) {
+               $output[$total - 1]->next_title = $next->post_title;
+               $output[$total - 1]->next_url = get_permalink($next->ID);
+       }
+    }
+
     return $output;
   }
   

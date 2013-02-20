@@ -71,9 +71,13 @@ class JSON_API_Core_Controller {
         'post' => $post
       );
       if ($previous) {
+	$response['post']->previous_title = $previous->post_title;
+	$response['post']->previous_url = get_permalink($previous->ID);
         $response['previous_url'] = get_permalink($previous->ID);
       }
       if ($next) {
+	$response['post']->next_title = $next->post_title;
+	$response['post']->next_url = get_permalink($next->ID);
         $response['next_url'] = get_permalink($next->ID);
       }
       return $response;
